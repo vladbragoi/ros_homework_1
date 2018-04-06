@@ -16,7 +16,7 @@ per poter svolgere i compiti seguenti
 * Un nodo permette di selezionare da tastiera quale parte del messaggio verrà mostrata a video (si veda la pagina seguente per i dettagli) 
 * Un nodo mostra a video la parte del messaggio selezionata 
 
-### Some information ###
+### Starting nodes ###
 **Before starting, you need to compile the package using the following command:**
 ```sh
 catkin_make --pkg ros_homework_1
@@ -29,6 +29,8 @@ roslaunch ros_homework_1 ros_tutorial1.launch
 ```sh
 src/ros_homework_1/launch/launch.sh
 ```
+
+### Execution graphs ###
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: <br/>
 
 ![](images/msg_vis_nodes.svg)
