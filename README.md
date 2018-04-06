@@ -17,15 +17,15 @@ per poter svolgere i compiti seguenti
 * Un nodo mostra a video la parte del messaggio selezionata 
 
 ### Starting nodes ###
-**Before starting, you need to compile the package using the following command:**
+Before starting, you need to compile the package using the following command:
 ```sh
 catkin_make --pkg ros_homework_1
 ```
-**Launch nodes using roslaunch command from your shell:**
+Launch nodes using roslaunch command from your shell:
 ```sh
 roslaunch ros_homework_1 ros_tutorial1.launch
 ```
-**or in addition (from your catkin_ws workspace) using a bash script:**
+or in addition (from your catkin_ws workspace) using a bash script:
 ```sh
 src/ros_homework_1/launch/launch.sh
 ```
