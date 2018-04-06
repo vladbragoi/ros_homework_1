@@ -24,12 +24,14 @@ int main(int argc, char **argv) {
     // subscribe to listen messages from "message" topic
     ros::Subscriber sub = n.subscribe("message", 100, select_callback);
 
-    // subscribe to publish on "ouput" topic
+    // subscribe to publish on "visualize" topic
     ros::Publisher pub = n.advertise<std_msgs::String>("visualize", 100);
-    
+
+    // subscribe to publish on "kill" topic
+    ros::Publisher kill = n.advertise<std_msgs::String>("kill", 100);
 
     while (ros::ok()) {
-        std_msgs::String visualize;
+        std_msgs::String tmp;
         std::stringstream ss;
         std::string choice;
         
@@ -49,15 +51,18 @@ int main(int argc, char **argv) {
                 ss << "Age: " << output.age;
             else if (choice == "c")
                 ss << "Degree: " << output.degree;
-            else if (choice == "q")
+            else if (choice == "q") {
+                ss << "kill";
+                tmp.data = ss.str();
+                kill.publish(tmp);
                 ros::shutdown();
-            else {
+            } else {
                 std::cout << "Errore. Ripetere la scelta.\n";
                 continue;
             }
             
-            visualize.data = ss.str();
-            pub.publish(visualize);
+            tmp.data = ss.str();
+            pub.publish(tmp);
         }
     }
 
