@@ -2,14 +2,39 @@
 ##### Homework 1 [Laboratorio Ciberfisico] - University of Verona #####
 
 ### Rules (in italian) ###
-* Lo studente deve svolgere individualmente le attività previste nel testo dell’homework
+*1.* Lo studente deve svolgere individualmente le attività previste nel testo dell’homework
 
-* Il codice dell’homework deve essere clonabile dal docente tramite un server Git
+*2.* Il codice dell’homework deve essere clonabile dal docente tramite un server Git
 
-* Il codice deve essere accompagnato da un file README.md contenente una descrizione della soluzione adottata per risolvere l’homework
+*3.* Il codice deve essere accompagnato da un file README.md contenente una descrizione della soluzione adottata per risolvere l’homework
 
-<img align="center" width="250px" src="images/full_process.svg">
+### What it should do (in italian) ###
+Si realizzi un package ROS contenente degli opportuni nodi 
+per poter svolgere i compiti seguenti
 
+* Un nodo pubblica, 1 volta al secondo, un messaggio contenente un nome, una età, e un corso di laurea 
+* Un nodo permette di selezionare da tastiera quale parte del messaggio verrà mostrata a video (si veda la pagina seguente per i dettagli) 
+* Un nodo mostra a video la parte del messaggio selezionata 
+
+### Some information ###
+**You can launch nodes using roslaunch command from your shell:**
+```sh
+roslaunch ros_homework_1 ros_tutorial1.launch
+```
+**or in addition (from your catkin_ws workspace):**
+```sh
+src/ros_homework_1/launch/launch.sh
+```
+Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: ![](images/msg_vis_nodes.svg)
+
+I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option: ![](images/killtopic.svg)
+
+...and then the final graph of the nodes execution is: ![](images/full_process.svg)
+
+
+<p align="center">
+    <img width="" src="images/full_process.svg">
+</p>
 
 ### Author ###
 
