@@ -16,6 +16,13 @@ per poter svolgere i compiti seguenti
 * Un nodo permette di selezionare da tastiera quale parte del messaggio verrà mostrata a video (si veda la pagina seguente per i dettagli) 
 * Un nodo mostra a video la parte del messaggio selezionata 
 
+Il nodo che permette di selezionare da tastiera quale parte del messaggio mostrare dovrà comportarsi nel modo seguente:
+
+* Digitando ‘a’ verrà stampato tutto il messaggio
+* 'n’ mostrerà solo il nome
+* ‘e’ mostrerà solo l’età
+* ‘c’ mostrerà solo il corso di laurea
+
 ### Starting nodes ###
 Before starting, you need to compile the package using the following command:
 ```sh
