@@ -1,7 +1,14 @@
 #include "ros/ros.h"
 #include "ros_homework_1/Message.h"
+#include "std_msgs/String.h"
 
 std::string matrix[4][3];
+
+void stop_callback(const std_msgs::String::ConstPtr& msg) {
+    std::string tmp = msg->data.c_str();
+    if (tmp.compare("kill") == 0)
+        ros::shutdown();
+}
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "publisher");
@@ -21,7 +28,9 @@ int main(int argc, char **argv) {
     matrix[3][1] = "24";
     matrix[3][2] = "L. in Lingue";
 
-    ros::Publisher message = n.advertise<ros_homework_1::Message>("message", 1000);
+    ros::Publisher message = n.advertise<ros_homework_1::Message>("message", 100);
+
+    ros::Subscriber kill = n.subscribe("kill", 100, stop_callback);
 
     ros::Rate loop_rate(1);;
 
