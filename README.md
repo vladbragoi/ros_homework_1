@@ -18,11 +18,11 @@ per poter svolgere i compiti seguenti
 
 ### Some information ###
 **You can launch nodes using roslaunch command from your shell:**
-```sh
+```bash
 roslaunch ros_homework_1 ros_tutorial1.launch
 ```
 **or in addition (from your catkin_ws workspace):**
-```sh
+```bash
 src/ros_homework_1/launch/launch.sh
 ```
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: ![](images/msg_vis_nodes.svg)
