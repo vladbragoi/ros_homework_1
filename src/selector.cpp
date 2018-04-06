@@ -9,35 +9,58 @@ const std::string menu = "- Digita 'a' per stampare tutto il messaggio\n"
                     "- Digita 'c' per mostrare il corso di laurea\n"
                     "- Digita 'q' per uscire\n";
 
-void select_callback(const ros_homework_1::Message msg) {
-    std::string input;
+ros_homework_1::Message output;
 
-    std::cout << menu << "> ";
-    std::cin >> input;
-    if (input == "a")
-        ;
-    else if (input == "n")
-        ;
-    else if (input == "e")
-        ;
-    else if (input == "c")
-        ;
-    else if (input == "q")
-        ros::shutdown();
-    else
-        std::cout << "Errore. Ripetere la scelta.";
-    
+void select_callback(const ros_homework_1::Message msg) {
+    output = msg;
 }
 
 int main(int argc, char **argv) {
 
+    // initialization
     ros::init(argc, argv, "selector");
-
     ros::NodeHandle n;
 
-    ros::Subscriber sub = n.subscribe("message", 1000, select_callback);
+    // subscribe to listen messages from "message" topic
+    ros::Subscriber sub = n.subscribe("message", 100, select_callback);
 
-    ros::spin();
+    // subscribe to publish on "ouput" topic
+    ros::Publisher pub = n.advertise<std_msgs::String>("visualize", 100);
+    
+
+    while (ros::ok()) {
+        std_msgs::String visualize;
+        std::stringstream ss;
+        std::string choice;
+
+        ros::spinOnce();
+
+        if (output.name != "" || output.age != 0 || output.degree != "") {
+            std::cout << menu << "> ";
+            std::cin >> choice;
+            
+            if (choice == "a")
+                ss << "\n\tName: " << output.name << "\n" 
+                    << "\tAge: " << output.age << "\n"
+                    << "\tDegree: " << output.degree;
+            else if (choice == "n")
+                ss << "Name: " << output.name;
+            else if (choice == "e")
+                ss << "Age: " << output.age;
+            else if (choice == "c")
+                ss << "Degree: " << output.degree;
+            else if (choice == "q")
+                ros::shutdown();
+            else
+                std::cout << "Errore. Ripetere la scelta.";
+            
+            visualize.data = ss.str();
+
+            std::string x = "anec";
+            if (choice.find(x))
+                pub.publish(visualize);
+        }
+    }
 
     return 0;
 }
