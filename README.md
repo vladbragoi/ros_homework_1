@@ -8,7 +8,7 @@
 
 * Il codice deve essere accompagnato da un file README.md contenente una descrizione della soluzione adottata per risolvere l’homework
 
-![](images/full_process.svg){:height="36px" width="36px"}
+<img align="center" width="250" src="images/full_process.svg">
 
 
 ### Author ###
