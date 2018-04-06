@@ -17,19 +17,26 @@ per poter svolgere i compiti seguenti
 * Un nodo mostra a video la parte del messaggio selezionata 
 
 ### Some information ###
-**You can launch nodes using roslaunch command from your shell:**
-```bash
+**Before starting, you need to compile the package using the following command:**
+```sh
+catkin_make --pkg ros_homework_1
+```
+**Launch nodes using roslaunch command from your shell:**
+```sh
 roslaunch ros_homework_1 ros_tutorial1.launch
 ```
-**or in addition (from your catkin_ws workspace):**
-```bash
+**or in addition (from your catkin_ws workspace) using a bash script:**
+```sh
 src/ros_homework_1/launch/launch.sh
 ```
-Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: ![](images/msg_vis_nodes.svg)
+Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: 
+![](images/msg_vis_nodes.svg)
 
-I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option: ![](images/killtopic.svg)
+I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option: 
+![](images/killtopic.svg)
 
-...and then the final graph of the nodes execution is: ![](images/full_process.svg)
+...and then the final graph of the nodes execution is: 
+![](images/full_process.svg)
 
 
 <p align="center">
