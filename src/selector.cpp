@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
         std_msgs::String visualize;
         std::stringstream ss;
         std::string choice;
-
+        
         ros::spinOnce();
 
         if (output.name != "" || output.age != 0 || output.degree != "") {
@@ -40,9 +40,9 @@ int main(int argc, char **argv) {
             std::cin >> choice;
             
             if (choice == "a")
-                ss << "\n\tName: " << output.name << "\n" 
-                    << "\tAge: " << output.age << "\n"
-                    << "\tDegree: " << output.degree;
+                ss << "\n---------- Name: " << output.name << "\n" 
+                    << "---------- Age: " << output.age << "\n"
+                    << "---------- Degree: " << output.degree;
             else if (choice == "n")
                 ss << "Name: " << output.name;
             else if (choice == "e")
@@ -51,14 +51,13 @@ int main(int argc, char **argv) {
                 ss << "Degree: " << output.degree;
             else if (choice == "q")
                 ros::shutdown();
-            else
-                std::cout << "Errore. Ripetere la scelta.";
+            else {
+                std::cout << "Errore. Ripetere la scelta.\n";
+                continue;
+            }
             
             visualize.data = ss.str();
-
-            std::string x = "anec";
-            if (choice.find(x))
-                pub.publish(visualize);
+            pub.publish(visualize);
         }
     }
 
