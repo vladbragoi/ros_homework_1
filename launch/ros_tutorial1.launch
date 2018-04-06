@@ -1,0 +1,8 @@
+<launch>
+    <node name="publisher" pkg="ros_homework_1" type="publisher" 
+            output="screen" launch-prefix="gnome-terminal -x sh -c" />
+    <node name="visualizer" pkg="ros_homework_1" type="visualizer" 
+            output="screen" launch-prefix="gnome-terminal -x sh -c"/>
+    <node name="selector" pkg="ros_homework_1" type="selector" 
+            output="screen" launch-prefix="gnome-terminal -x sh -c"/>
+</launch>
