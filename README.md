@@ -30,10 +30,13 @@ roslaunch ros_homework_1 ros_tutorial1.launch
 src/ros_homework_1/launch/launch.sh
 ```
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: <br/>
+
 ![](images/msg_vis_nodes.svg)
 I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option (just to quit from the program): <br/>
+
 ![](images/killtopic.svg)
-<br/>...and then the final graph of the nodes execution is: <br/>
+<br/>...and then the final graph of the nodes execution is: 
+
 ![](images/full_process.svg)
 
 ### Author ###
