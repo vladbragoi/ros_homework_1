@@ -52,7 +52,7 @@ I used also another topic to send a "kill" message from selector node to publish
 ![Full execution graph](images/full_process.svg)
 
 ### Execution screenshot ###
-![Execution graph](images/screenshot.png)
+![Nodes execution](images/screenshot.png)
 
 ### References ###
 [Course page (prof. Bloisi - Univr)](profs.scienze.univr.it/~bloisi/corsi/ciberfisico.html)
