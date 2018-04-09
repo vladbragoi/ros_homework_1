@@ -43,13 +43,16 @@ You can see that three nodes start together. Publisher sends on "message" topic 
 ### Execution graphs ###
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: <br/>
 
-![](images/msg_vis_nodes.svg)
+![Execution graph](images/msg_vis_nodes.svg)
 I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option (just to quit from the program): <br/>
 
-![](images/killtopic.svg)
+![Kill topic](images/killtopic.svg)
 <br/>...and then the final graph of the nodes execution is: 
 
-![](images/full_process.svg)
+![Full execution graph](images/full_process.svg)
+
+### Execution screenshot ###
+![Execution graph](images/screenshot.png)
 
 ### References ###
 [Course page (prof. Bloisi - Univr)](profs.scienze.univr.it/~bloisi/corsi/ciberfisico.html)
