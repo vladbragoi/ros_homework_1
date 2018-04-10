@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
     // subscribe to listen on "command" topic
     ros::Subscriber command = n.subscribe("command", 100, command_callback);
 
-    // subscribe to publish on "kill" topic
+    // subscribe to listen on "kill" topic
     ros::Subscriber kill = n.subscribe("kill", 100, stop_callback);
 
     // process of incoming messages
