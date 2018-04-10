@@ -26,19 +26,19 @@ Il nodo che permette di selezionare da tastiera quale parte del messaggio mostra
 ### Starting nodes ###
 Before starting, you need to compile the package using the following command:
 ```sh
-catkin_make --pkg ros_homework_1
+$ catkin_make --pkg ros_homework_1
 ```
 Launch nodes using roslaunch command from your shell:
 ```sh
-roslaunch ros_homework_1 ros_tutorial1.launch
+$ roslaunch ros_homework_1 ros_tutorial1.launch
 ```
 or in addition (from your catkin_ws workspace) using a bash script:
 ```sh
-src/ros_homework_1/launch/launch.sh
+$ src/ros_homework_1/launch/launch.sh
 ```
 
 ### How does it works ###
-You can see that three nodes start together. Publisher sends on "message" topic a message wich contains different values per second. I use a message descriptor to send informations from publisher to selector (Message.msg wich contains a string field, an unsigned integer field and another string one). Selector node receives informations from the publisher, takes an user input and then selects values to be send to the visualizer node in a simple string message. This one just visualize the message to the screen using the ROS_INFO macro.
+You can see that three nodes start together. Publisher sends on "message" topic a message wich contains different values per second. I use a message descriptor to send informations from publisher to selector (Message.msg wich contains a string field, an unsigned integer field and another string one). Selector takes an user input as command and then sends it trough the "command" topic in a simple string message. This one just visualize the message according to the command received, using the ROS_INFO macro.
 
 ### Execution graphs ###
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: <br/>
@@ -54,12 +54,15 @@ Publisher, selector and visualizer nodes communicate with each other using topic
 ### Execution screenshot ###
 ![Nodes execution](images/screenshot.png)
 
+> For more info see the code in src folder
+
 ### References ###
 [Course page (prof. Bloisi - Univr)](profs.scienze.univr.it/~bloisi/corsi/ciberfisico.html)
 
 [Ros msg](http://wiki.ros.org/msg)
 
 [Ros tutorials](http://wiki.ros.org/ROS/Tutorials)
+
 
 ### Author ###
 
