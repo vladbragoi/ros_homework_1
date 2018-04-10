@@ -44,7 +44,7 @@ You can see that three nodes start together. Publisher sends on "message" topic 
 Publisher, selector and visualizer nodes communicate with each other using topics as you see in the picture: <br/>
 
 ![Execution graph](images/cmd_msg_topics.svg)
-I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option (just to quit from the program): <br/>
+<br/>I used also another topic to send a "kill" message from selector node to publisher and visualizer nodes because of I want to stop them if user choose [q] option (just to quit from the program): <br/>
 
 ![Kill topic](images/killtopic.svg)
 <br/>...and then the final graph of the nodes execution is: 
