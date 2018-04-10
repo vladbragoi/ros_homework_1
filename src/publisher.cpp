@@ -1,4 +1,6 @@
 /**
+ * Version 1.1
+ * 
  * This file contains the implementation for publisher node, part of ros_homework_1
  * package. It is distributed under the terms of MIT license.
  * For more informations about the ros_homework_1 package please visit my git repository

@@ -1,4 +1,6 @@
 /**
+ * Version 1.1
+ * 
  * This file contains the implementation for selector node, part of ros_homework_1
  * package. It is distributed under the terms of MIT license.
  * For more informations about the ros_homework_1 package please visit my git repository
@@ -33,7 +35,6 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "ros_homework_1/Message.h"
 
 const std::string menu = "- Digita 'a' per stampare tutto il messaggio\n"
                     "- Digita 'n' per mostrare il nome\n"
@@ -41,69 +42,47 @@ const std::string menu = "- Digita 'a' per stampare tutto il messaggio\n"
                     "- Digita 'c' per mostrare il corso di laurea\n"
                     "- Digita 'q' per uscire\n";
 
-ros_homework_1::Message output;
-
-// callback for "message" topic
-void select_callback(const ros_homework_1::Message msg) {
-    output = msg;
-}
 
 int main(int argc, char **argv) {
+    std_msgs::String tmp;
+    std::string choice;
+    std::string options = "acne";
 
     // initialization
     ros::init(argc, argv, "selector");
     ros::NodeHandle n;
 
-    // subscribe to listen messages from "message" topic
-    ros::Subscriber sub = n.subscribe("message", 100, select_callback);
-
-    // subscribe to publish on "visualize" topic
-    ros::Publisher pub = n.advertise<std_msgs::String>("visualize", 100);
+    // subscribe to publish on "command" topic
+    ros::Publisher cmd = n.advertise<std_msgs::String>("command", 100);
 
     // subscribe to publish on "kill" topic
     ros::Publisher kill = n.advertise<std_msgs::String>("kill", 100);
 
-    while (ros::ok()) {
-        std_msgs::String tmp;
-        std::stringstream ss;
-        std::string choice;
-        
-        ros::spinOnce();
+    // print menu options
+    std::cout << menu;
 
-        // just for skip cycles that does not contains relevant values in output variable
-        if (output.name != "" || output.age != 0 || output.degree != "") {
-            std::cout << menu << "> ";
-            std::cin >> choice;
-            
-            // check the input choice from the user as specified
-            if (choice == "a")
-                ss << "\n---------- Name: " << output.name << "\n" 
-                    << "---------- Age: " << output.age << "\n"
-                    << "---------- Degree: " << output.degree;
-            else if (choice == "n")
-                ss << "Name: " << output.name;
-            else if (choice == "e")
-                ss << "Age: " << output.age;
-            else if (choice == "c")
-                ss << "Degree: " << output.degree;
-            else if (choice == "q") {
-                // send kill message in order to stop other nodes safely subscribed 
-                // to the "kill" topic
-                ss << "kill";
-                tmp.data = ss.str();
-                kill.publish(tmp);
-                
-                // shutdown the node
-                ros::shutdown();
-            } else {
-                std::cout << "Errore. Ripetere la scelta.\n";
-                continue;
-            }
-            
-            // send message to the "visualize" topic
-            tmp.data = ss.str();
-            pub.publish(tmp);
+    while (ros::ok()) {
+        std::cout << "> ";
+        std::cin >> choice;
+
+        // check the input choice from the user as specified
+        if (choice == "q") {
+            // send kill message in order to stop other nodes safely subscribed 
+            // to the "kill" topic
+            tmp.data = "kill";
+            kill.publish(tmp);
+            // shutdown the node
+            ros::shutdown();
+        } else if (options.find(choice) == std::string::npos) {
+            std::cout << "Errore. Ripetere la scelta.\n";
+            continue;
         }
+            
+        // send message to the "command" topic
+        tmp.data = choice;
+        cmd.publish(tmp);
+
+        ros::spinOnce();
     }
 
     return 0;
